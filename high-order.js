@@ -1,4 +1,4 @@
-/* At first we are testing */
+/* At first we are testing - by @james-meneses */
 function noisy (f) {
     return (...args) => {
         console.log('calling with ', args);
