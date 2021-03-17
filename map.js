@@ -40,8 +40,8 @@ function map ( array, transform ) {
 }
 
 
-let singersAging = singer => singer.age + 1
-
-console.log ('Singers age +1 - ', map(singers, singersAging))
+let aliveSingers = singers.filter( singer => singer.alive )
+let aliveSingersName = aliveSingers.map( singer => singer.name )
+console.log ('Cantores vivos - ', aliveSingersName)
 
 /* não dá pra tirar muito disso kk, mas só para aprender mesmo */
