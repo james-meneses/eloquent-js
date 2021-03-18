@@ -48,25 +48,3 @@ let coelhoFofao = new Coelho('fofao');
 // string() vai chamar o .toString() do Coelho, que tem retorno diferente do original (Object.toString())
 String(coelhoFofao)
 
-/* Symbols */
-
-let sym = Symbol ("name")
-Coelho.prototype[sym] = 'Jaime'
-console.log(coelhoFofao[sym])
-
-
-const toStringSymbol = Symbol("toString")
-
-Array.prototype[toStringSymbol] = function () {
-    return this.length + ' values'
-}
-
-console.log([1,2].toString())
-
-console.log([1,2][toStringSymbol]())
-
-let meuTexto = {
-    [toStringSymbol]() { return 'O telefone tocou novamente...' }
-}
-
-console.log(meuTexto[toStringSymbol]())
