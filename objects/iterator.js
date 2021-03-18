@@ -36,24 +36,31 @@ class Matrix {
     }
 
     get (x, y) { 
-        return this.content[y * width + x]
+        return this.content[y * this.width + x]
     }
 
     set (x, y, value) {
-        this.content[ y * width + x] = value
+        this.content[ y * this.width + x] = value
     }
 }
+
+// lets build an iterator for the matrix
+// so we get to understand how a iterator should work
+// and maybe, someday, apply it on many fucking codes 
+// if you're reading this, send me a pix so i can buy a coxinha, pls
 
 class MatrixIterator {
     constructor (matrix) {
         this.x = 0;
-        thix.y = 0;
+        this.y = 0;
         this.matrix = matrix;
     }
 
     next () {
+        // if we reached the bottom, then we're done
         if (this.y === this.matrix.height) return { done: true}
 
+        // here we set the current value, right?
         let value = {
             x: this.x,
             y: this.y,
@@ -66,8 +73,26 @@ class MatrixIterator {
             this.x = 0
             this.y++
         }
+
         return {value, done: false}
     }
 }
 
+// now lets set up the Matrix to be iterable
 
+Matrix.prototype[Symbol.iterator] = function() {
+    return new MatrixIterator( this )
+}
+
+
+let matrix = new Matrix(2, 2, (x, y) => `value ${x}, ${y}`)
+for (item of matrix ) {
+    console.log(item)
+}
+
+// the for from the book
+console.log ('\nFrom the book:')
+for (let {x, y, value} of matrix) 
+    console.log(x, y, value)
+// sponsored by @brazilguettoboys 
+// coded by @james-meneses || @yung-jaimo
